@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hy.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hy.domain.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_type" property="userType" jdbcType="TINYINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="is_biz_operator" property="isBizOperator" jdbcType="TINYINT" />
+    <result column="is_sys_operator" property="isSysOperator" jdbcType="TINYINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="creator" property="creator" jdbcType="BIGINT" />
+    <result column="updator" property="updator" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="deleted" property="deleted" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_type, mobile, is_biz_operator, is_sys_operator, login_name, real_name, password, 
+    status, creator, updator, create_date, update_date, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_USER
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hy.domain.User" >
+    insert into T_USER (id, user_type, mobile, 
+      is_biz_operator, is_sys_operator, login_name, 
+      real_name, password, status, 
+      creator, updator, create_date, 
+      update_date, deleted)
+    values (#{id,jdbcType=BIGINT}, #{userType,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR}, 
+      #{isBizOperator,jdbcType=TINYINT}, #{isSysOperator,jdbcType=TINYINT}, #{loginName,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{creator,jdbcType=BIGINT}, #{updator,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hy.domain.User" >
+    insert into T_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="isBizOperator != null" >
+        is_biz_operator,
+      </if>
+      <if test="isSysOperator != null" >
+        is_sys_operator,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="updator != null" >
+        updator,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isBizOperator != null" >
+        #{isBizOperator,jdbcType=TINYINT},
+      </if>
+      <if test="isSysOperator != null" >
+        #{isSysOperator,jdbcType=TINYINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updator != null" >
+        #{updator,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hy.domain.User" >
+    update T_USER
+    <set >
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isBizOperator != null" >
+        is_biz_operator = #{isBizOperator,jdbcType=TINYINT},
+      </if>
+      <if test="isSysOperator != null" >
+        is_sys_operator = #{isSysOperator,jdbcType=TINYINT},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="updator != null" >
+        updator = #{updator,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hy.domain.User" >
+    update T_USER
+    set user_type = #{userType,jdbcType=TINYINT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      is_biz_operator = #{isBizOperator,jdbcType=TINYINT},
+      is_sys_operator = #{isSysOperator,jdbcType=TINYINT},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      creator = #{creator,jdbcType=BIGINT},
+      updator = #{updator,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
