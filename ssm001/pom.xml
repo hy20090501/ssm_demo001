@@ -64,6 +64,22 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
+        <!-- javaee-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-api</artifactId>
+		    <version>6.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- javaee-web-api包 注意和项目使用的JDK版本对应 -->
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-web-api</artifactId>
+		    <version>6.0</version>
+		    <scope>provided</scope>
+		</dependency>
 
         <!--单元测试依赖 -->
         <dependency>
@@ -121,5 +137,21 @@
             <version>5.1.29</version>
         </dependency>
     </dependencies>
-  
+	  	
+	<build>
+		<plugins>
+		    <plugin>
+		        <groupId>org.eclipse.jetty</groupId>
+		        <artifactId>jetty-maven-plugin</artifactId>
+		        <version>9.0.0.v20130308</version>
+		        <configuration>
+		            <scanIntervalSeconds>5</scanIntervalSeconds>
+		            <webApp>
+		            	<contextPath>/</contextPath>
+		            </webApp>
+		        </configuration>
+		    </plugin>
+		</plugins>
+	</build>  	
+	
 </project>
